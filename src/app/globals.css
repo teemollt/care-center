@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1d5d8b;
+  --color-primary-dark: #164a70;
+  --color-accent-teal: #2d8b6d;
+  --color-background-light: #f6f7f8;
+  --color-background-dark: #121a20;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #1a2632;
+
+  --font-display: "Noto Sans KR", "Manrope", sans-serif;
+  --font-body: "Noto Sans KR", "Manrope", sans-serif;
+
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 2.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-display);
+    @apply bg-background-light text-gray-900 antialiased selection:bg-primary selection:text-white;
+  }
+
+  /* 한글 줄바꿈 */
+  .break-keep {
+    word-break: keep-all;
+  }
+
+  /* 스크롤바 숨기기 */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}
+
+@layer components {
+
+  /* 글래스모피즘 헤더 */
+  .glass-header {
+    @apply bg-white/80 backdrop-blur-xl border-b border-white/20;
+  }
+
+  /* 애니메이션 */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 버튼 스타일 */
+  .btn-primary {
+    @apply flex items-center justify-center rounded-full bg-primary px-8 text-base font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  .btn-secondary {
+    @apply flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-8 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/20;
+  }
+
+  /* 서비스 카드 */
+  .service-card {
+    @apply relative flex flex-col overflow-hidden rounded-3xl bg-white border border-gray-100 shadow-sm transition-all hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1;
+  }
+}
