@@ -5,59 +5,62 @@ import { useState } from "react";
 
 const navLinks = [
     { href: "/", label: "홈" },
-    { href: "/services", label: "서비스 안내" },
-    { href: "/pricing", label: "이용 요금" },
-    { href: "/contact", label: "상담 신청" },
-    { href: "/careers", label: "채용 안내" },
+    { href: "/services", label: "서비스" },
+    { href: "/pricing", label: "이용요금" },
+    { href: "/contact", label: "상담신청" },
+    { href: "/careers", label: "채용" },
 ];
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 z-50 w-full glass-header transition-all duration-300">
-            <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-6 lg:px-8">
+        <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-100">
+            <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 cursor-pointer">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white">
-                        <span className="material-symbols-outlined text-[24px]">health_and_safety</span>
+                <Link href="/" className="flex items-center gap-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-white">
+                        <span className="material-symbols-outlined text-base">health_and_safety</span>
                     </div>
-                    <span className="text-xl font-bold tracking-tight text-gray-900">도훈방문간호 센터</span>
+                    <span className="text-sm font-semibold text-slate-800">도훈방문간호센터</span>
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-8">
+                <nav className="hidden md:flex items-center gap-5">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-base font-medium text-gray-600 hover:text-primary transition-colors"
+                            className="text-sm text-slate-500 hover:text-slate-800 transition-colors"
                         >
                             {link.label}
                         </Link>
                     ))}
                 </nav>
 
-                {/* Contact & CTA */}
-                <div className="flex items-center gap-6">
-                    <div className="hidden lg:flex flex-col items-end leading-tight">
-                        <span className="text-xs text-gray-500 font-medium">상담 문의</span>
-                        <span className="text-lg font-bold text-primary tracking-tight">031-000-0000</span>
-                    </div>
+                {/* CTA */}
+                <div className="flex items-center gap-3">
+                    <a
+                        href="tel:031-000-0000"
+                        className="hidden lg:flex items-center gap-1 text-sm text-primary font-medium"
+                    >
+                        <span className="material-symbols-outlined text-base">call</span>
+                        031-000-0000
+                    </a>
                     <Link
                         href="/contact"
-                        className="hidden sm:flex h-10 items-center justify-center rounded-full bg-primary px-6 text-sm font-semibold text-white shadow-sm transition-transform hover:scale-105 active:scale-95"
+                        className="hidden sm:flex h-8 items-center px-3.5 rounded-md bg-primary text-xs font-medium text-white hover:bg-primary-dark transition-colors"
                     >
-                        상담 신청
+                        상담신청
                     </Link>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden text-gray-800 p-2"
+                        className="md:hidden text-slate-600 p-1"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        aria-label="메뉴 열기"
+                        aria-label="메뉴"
                     >
-                        <span className="material-symbols-outlined text-3xl">
+                        <span className="material-symbols-outlined text-xl">
                             {mobileMenuOpen ? "close" : "menu"}
                         </span>
                     </button>
@@ -66,13 +69,13 @@ export default function Header() {
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <div className="md:hidden bg-white border-t border-gray-100">
-                    <nav className="flex flex-col px-6 py-4 gap-4">
+                <div className="md:hidden bg-white border-t border-slate-100">
+                    <nav className="flex flex-col px-6 py-2">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="text-lg font-medium text-gray-700 hover:text-primary py-2"
+                                className="text-sm text-slate-600 hover:text-slate-800 py-2.5 border-b border-slate-50 last:border-0"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 {link.label}
@@ -80,9 +83,9 @@ export default function Header() {
                         ))}
                         <a
                             href="tel:031-000-0000"
-                            className="flex items-center gap-2 text-primary font-bold text-lg py-2"
+                            className="flex items-center gap-1.5 text-primary font-medium text-sm py-2.5 mt-1"
                         >
-                            <span className="material-symbols-outlined">call</span>
+                            <span className="material-symbols-outlined text-base">call</span>
                             031-000-0000
                         </a>
                     </nav>
